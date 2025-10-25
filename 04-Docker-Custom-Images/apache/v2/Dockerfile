@@ -1,0 +1,17 @@
+## Base Image 
+FROM ubuntu:noble 
+
+## Owner Details 
+MAINTAINER Amit Vashist <amitvashist7@outlook.com>
+
+## Update the APT Repo
+RUN apt-get update 
+
+## Install Apache2 Packages 
+RUN apt-get install apache2 -y 
+
+## Deploy Custom Web Page 
+COPY info.html /var/www/html/index.html 
+
+## Execute the Service 
+CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND" ]
