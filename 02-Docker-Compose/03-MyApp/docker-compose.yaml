@@ -1,0 +1,15 @@
+services: 
+  proxy:
+    image: nginx:latest 
+    ports: 
+      - '8084:80' 
+
+
+  myapp:
+    image: amitvashist7/docker-k8s-ey-we-25-cct-2025-apache
+    ports: 
+      - '8080:80' 
+
+  db:
+    image: nginx
+    

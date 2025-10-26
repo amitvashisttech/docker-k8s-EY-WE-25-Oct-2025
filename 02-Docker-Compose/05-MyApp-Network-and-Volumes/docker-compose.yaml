@@ -1,0 +1,45 @@
+services: 
+  proxy:
+    image: nginx:latest 
+    ports: 
+      - '8084:80'
+    networks: 
+      - mynet
+    volumes:
+      - myproxy-app-vol1:/myvol1 
+      - myproxy-app-vol2:/myvol2 
+     
+
+
+  myapp:
+    image: amitvashist7/docker-k8s-ey-we-25-cct-2025-apache
+    ports: 
+      - '8080:80' 
+    networks: 
+      - mynet
+    volumes:
+      - myapp1-app-vol1:/myvol1 
+      - myapp2-app-vol2:/myvol2 
+
+  db:
+    image: nginx
+    ports:
+      - '3306:80'
+    networks: 
+      - mysecurenet
+    volumes:
+      - mydb1-app-vol1:/mydb1 
+
+volumes: 
+  mydb1-app-vol1:
+  myapp1-app-vol1:
+  myapp2-app-vol2:
+  myproxy-app-vol1:
+  myproxy-app-vol2:
+
+networks: 
+  mynet:
+    driver: bridge
+  mysecurenet:
+    driver: bridge
+    
