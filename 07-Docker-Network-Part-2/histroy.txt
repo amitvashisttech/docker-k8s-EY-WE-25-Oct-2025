@@ -1,0 +1,43 @@
+```
+    1  docker kill $(docker ps -qa)
+    2  docker rm $(docker ps -qa)
+    3  ls
+    4  docker ps
+    5  ip addr
+    6  docker network ls
+    7  docker network inspect bridge
+    8  docker run -d -P --name test-1 nginx
+    9  docker ps
+   10  docker network inspect bridge
+   11  docker run -it --name net-tools ubuntu
+   12  docker ps -a
+   13  docker commit -m "My Network Image" -p net-tools mynetwork-tools:v1
+   14  docker images
+   15  docker run -itd --name default-nw-1 mynetwork-tools:v1
+   16  docker ps
+   17  docker network ls
+   18  docker run -itd --name host-nw-1 --network host  mynetwork-tools:v1
+   19  docker run -itd --name none-nw-1 --network none  mynetwork-tools:v1
+   20  docker ps
+   21  docker exec -it default-nw-1 ifconfig
+   22  docker exec -it default-nw-1 ping -c2 google.com
+   23  docker exec -it none-nw-1 ifconfig
+   24  docker exec -it none-nw-1 ping -c2 google.com
+   25  docker exec -it host-nw-1 ifconfig
+   26  ls
+   27  docker ps
+   28  docker network create --help
+   29  docker network create -d bridge --subnet 172.28.5.0/24 --gateway 172.28.5.1 mybr0
+   30  docker network ls
+   31  docker network inspect mybr0
+   32  docker network ls
+   33  ip a
+   34  docker run -itd --name mybr-nw-1 --network mybr0  mynetwork-tools:v1
+   35  docker run -itd --name mybr-nw-2 --network mybr0  mynetwork-tools:v1
+   36  docker ps
+   37  docker exec -it mybr-nw-1 ifconfig
+   38  docker exec -it mybr-nw-2 ifconfig
+   39  docker exec -it mybr-nw-2 ping -c 172.28.5.2
+   40  docker exec -it mybr-nw-2 ping -c2 172.28.5.2
+   41  docker exec -it mybr-nw-2 ping -c2 google.com
+```
