@@ -36,7 +36,7 @@ kubectl describe pod helloworld-deployment-57986b947d-7p2nx
 Label specific nodes to match the node selector criteria in the deployment:
 
 ```bash
-kubectl label nodes worker2 hardware=virtual
+kubectl label nodes <<worker2>> hardware=virtual
 kubectl get nodes --show-labels
 ```
 Check the wide output of pods to verify where they are running:
@@ -85,16 +85,16 @@ kubectl describe pod helloworld-deployment-2-7fd7bbcd7-86jfs
 Label nodes with specific environment tags:
 
 ```bash
-kubectl label nodes worker1 env=prod
+kubectl label nodes <<worker1>> env=prod
 kubectl get pods -o wide
 kubectl get nodes --show-labels
 ```
 Remove specific labels:
 
 ```bash
-kubectl label nodes worker1 env-
-kubectl label nodes worker1 hardware-
-kubectl label nodes worker2 hardware-
+kubectl label nodes <<worker1>> env-
+kubectl label nodes <<worker1>> hardware-
+kubectl label nodes <<worker2>> hardware-
 kubectl get nodes --show-labels
 ```
 ### 5. Cleanup and Final Verification
@@ -102,7 +102,7 @@ kubectl get nodes --show-labels
 After adjusting labels and deployments, ensure that nodes and pods are properly configured:
 
 ```bash
-kubectl label nodes worker1 hardware=virtual
+kubectl label nodes <<worker1>> hardware=virtual
 kubectl get nodes --show-labels
 kubectl get pods -o wide
 ```
@@ -117,8 +117,8 @@ kubectl get pods -o wide
 To clean up, remove labels from nodes:
 
 ```bash
-kubectl label nodes worker1 hardware-
-kubectl label nodes worker1 env-
-kubectl label nodes worker2 env-
+kubectl label nodes <<worker1>> hardware-
+kubectl label nodes <<worker1>> env-
+kubectl label nodes <<worker2>> env-
 kubectl get pods
 ```
