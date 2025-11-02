@@ -1,0 +1,83 @@
+785  cd 11-Limits-and-Quotas/
+  786  ls
+  787  cat 01-Namespace.yaml
+  788  kubectl apply -f 01-Namespace.yaml
+  789  ls
+  790  cat 02-Helloworld-deployment-without-limits.yaml
+  791  kubectl apply -f 02-Helloworld-deployment-without-limits.yaml
+  792  kubectl get po -n myspace
+  793  kubectl delete -f 02-Helloworld-deployment-without-limits.yaml
+  794  kubectl get po -n myspace
+  795  ls
+  796  cat 03-Default-Limits.yaml
+  797  kubectl apply -f 03-Default-Limits.yaml
+  798  kubectl get limitrange -n myspace
+  799  kubectl describe limitrange -n myspace
+  800  kubectl apply -f 02-Helloworld-deployment-without-limits.yaml
+  801  kubectl describe limitrange -n myspace
+  802  kubectl get po -n myspace
+  803  kubectl delete -f 02-Helloworld-deployment-without-limits.yaml
+  804  ls
+  805  cat 04-Helloworld-deployment-with-limits.yaml
+  806  kubectl apply -f 04-Helloworld-deployment-with-limits.yaml
+  807  kubectl get po -n myspace
+  808  kubectl describe limitrange -n myspace
+  809  kubectl get po -n myspace
+  810  kubectl describe po helloworld-deploymenti-with-quota-58d9cbd89c-2rmqv -n myspace
+  811  ls
+  812  kubectl get po -n myspace
+  813  kubectl apply -f 02-Helloworld-deployment-without-limits.yaml
+  814  kubectl get po -n myspace
+  815  kubectl describe po helloworld-deployment-6d569b784-4985z -n myspace
+  816  kubectl describe limitrange -n myspace
+  817  cat 02-Helloworld-deployment-without-limits.yaml
+  818  ls
+  819  cat 04-Helloworld-deployment-with-limits.yaml
+  820  kubectl describe po helloworld-deployment-6d569b784-4985z -n myspace
+  821  kubectl describe po helloworld-deploymenti-with-quota-58d9cbd89c-2rmqv -n myspace
+  822  ls
+  823  kubectl delete -f 04-Helloworld-deployment-with-limits.yaml
+  824  kubectl delete -f 02-Helloworld-deployment-without-limits.yaml
+  825  kubectl describe limitrange -n myspace
+  826  cat 05-Resource-Quota.yaml
+  827  kubectl apply -f 05-Resource-Quota.yaml
+  828  kubectl get resourcequota -n myspace
+  829  kubectl apply -f 04-Helloworld-deployment-with-limits.yaml
+  830  kubectl get po -n myspace
+  831  cat 04-Helloworld-deployment-with-limits.yaml
+  832  kubectl get po -n myspace
+  833  kubectl get resourcequota -n myspace
+  834  kubectl get po -n myspace
+  835  kubectl get deploy -n myspace
+  836  kubectl describe deploy helloworld-deploymenti-with-quota -n myspace
+  837  kubectl get rs  -n myspace
+  838  kubectl describe deploy helloworld-deploymenti-with-quota-58d9cbd89c -n myspace
+  839  kubectl describe rs helloworld-deploymenti-with-quota-58d9cbd89c -n myspace
+  840  ls
+  841  kubectl scale --replicas=1 helloworld-deploymenti-with-quota-58d9cbd89c -n myspace
+  842  kubectl scale --replicas=1 helloworld-deploymenti-with-quota -n myspace
+  843  kubectl scale --replicas=1 deploy helloworld-deploymenti-with-quota -n myspace
+  844  kubectl get resourcequota -n myspace
+  845  kubectl get po -n myspace
+  846  kubectl get resourcequota -n myspace
+  847  ls
+  848  cat 06-Object-Quota.yaml
+  849  kubectl apply -f 06-Object-Quota.yaml
+  850  kubectl get resourcequota -n myspace
+  851  kubectl get compute-quota -n myspace
+  852  kubectl get resourcequota -n myspace
+  853  kubectl apply -f 04-Helloworld-deployment-with-limits.yaml
+  854  kubectl get po -n myspace
+  855  kubectl describe rc helloworld-deploymenti-with-quota-58d9cbd89c -n myspace
+  856  kubectl describe rs helloworld-deploymenti-with-quota-58d9cbd89c -n myspace
+  857  kubectl describe rc helloworld-deploymenti-with-quota-58d9cbd89c -n myspace
+  858  kubectl get po -n myspace
+  859  kubectl get svc  -n myspace
+  860  kubectl expose deploy helloworld-deploymenti-with-quota --type=ClusterIP --name test
+  861  kubectl expose deploy helloworld-deploymenti-with-quota --type=ClusterIP --help
+  862  kubectl expose deploy helloworld-deploymenti-with-quota --type=ClusterIP --name=nginx-https -n myspace
+  863  kubectl get svc  -n myspace
+  864  kubectl expose deploy helloworld-deploymenti-with-quota --type=ClusterIP --name=nginx-https-2 -n myspace
+  865  kubectl get svc  -n myspace
+  866  kubectl expose deploy helloworld-deploymenti-with-quota --type=ClusterIP --name=nginx-https-2 -n myspace
+  867  kubectl get resourcequota -n myspace
