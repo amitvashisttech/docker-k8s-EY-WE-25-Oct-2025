@@ -1,0 +1,56 @@
+```
+ 1105  cd 16-Volumes/
+ 1106  ls
+ 1107  kubectl get pvc
+ 1108  cat 01-PVC-Claim.yaml
+ 1109  kubectl apply -f 01-PVC-Claim.yaml
+ 1110  kubectl get pvc
+ 1111  kubectl get pv
+ 1112  ls
+ 1113  kubectl get pvc
+ 1114  cat 02-App-Deployment.yaml
+ 1115  kubectl apply -f 02-App-Deployment.yaml
+ 1116  kubectl get po
+ 1117  kubectl get pvc
+ 1118  kubectl get pv
+ 1119  ls
+ 1120  cat 03-App-Service.yaml
+ 1121  kubectl apply -f 03-App-Service.yaml
+ 1122  kubectl get svcc
+ 1123  kubectl get svc
+ 1124  ls
+ 1125  curl 172.23.0.4:32468
+ 1126  ls
+ 1127  cat 02-App-Deployment.yaml
+ 1128  curl 172.23.0.4:32468/sc
+ 1129  kubectl get po
+ 1130  kubectl exec -it  po storage-deployment-77bb8c7754-tl2hp -- bash
+ 1131  kubectl exec -it  storage-deployment-77bb8c7754-tl2hp -- bash
+ 1132  curl 172.23.0.4:32468/sc
+ 1133  curl 172.23.0.4:32468/sc/
+ 1134  ls
+ 1135  kubectl get po
+ 1136  kubectl delete po storage-deployment-77bb8c7754-tl2hp
+ 1137  kubectl get po
+ 1138  curl 172.23.0.4:32468/sc/
+ 1139  ls
+ 1140  kubectl delete -f 02-App-Deployment.yaml
+ 1141  kubectl get po
+ 1142  kubectl get pvc
+ 1143  kubectl get pv
+ 1144  ls
+ 1145  cat 04-WebApp.yaml
+ 1146  kubectl apply -f 04-WebApp.yaml
+ 1147  kubectl get po
+ 1148  kubectl expose deploy webapp  --type=NodePort
+ 1149  kubectl get svc
+ 1150  curl 172.23.0.4:30449
+ 1151  curl 172.23.0.4:30449/amit/
+ 1152  ls
+ 1153  kubectl delete -f 04-WebApp.yaml
+ 1154  ls
+ 1155  kubectl get pv
+ 1156  kubectl delete -f 01-PVC-Claim.yaml
+ 1157  kubectl get pv
+ 1158  kubectl get pvc
+```
