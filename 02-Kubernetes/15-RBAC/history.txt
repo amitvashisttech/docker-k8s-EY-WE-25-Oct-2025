@@ -1,0 +1,80 @@
+1295  mkdir 15-RBAC
+ 1296  ls
+ 1297  cd 15-RBAC/
+ 1298  ls
+ 1299  kubectl get get-contexts
+ 1300  kubectl config get-contexts
+ 1301  kubectl get po
+ 1302  kubectl config use-context amit@k8s
+ 1303  kubectl get po
+ 1304  kubectl config use-context kind-k8s
+ 1305  kubectl get po
+ 1306  kubectl create role --help
+ 1307  kubectl create role pod-reader --verb=get --verb=list --verb=watch --resource=pods --dry-run
+ 1308  kubectl create role pod-reader --verb=get --verb=list --verb=watch --resource=pods --dry-run -o yaml
+ 1309  kubectl create role pod-reader --verb=get --verb=list --verb=watch --resource=pods --dry-run -o yaml > 01-Pod-Reader-Role.yaml
+ 1310  ls
+ 1311  cat 01-Pod-Reader-Role.yaml
+ 1312  kubectl get role
+ 1313  kubectl apply -f 01-Pod-Reader-Role.yaml
+ 1314  kubectl get role
+ 1315  kubectl create rolebinding --help
+ 1316  kubectl create rolebinding pod-reader-binding-amit --role=pod-reader --user=amit --dry-run -o yaml
+ 1317  kubectl create rolebinding pod-reader-binding-amit --role=pod-reader --user=amit --dry-run -o yaml > 02-Pod-Reader-Role-Binding.yaml
+ 1318  ls
+ 1319  kubectl auth can-i get po
+ 1320  kubectl auth can-i get deploy
+ 1321  kubectl auth can-i get nodes
+ 1322  kubectl auth can-i get po --user=amit
+ 1323  kubectl auth can-i get deploy --user=amit
+ 1324  kubectl auth can-i get nodes --user=amit
+ 1325  kubectl apply -f 02-Pod-Reader-Role-Binding.yaml
+ 1326  kubectl auth can-i get po
+ 1327  kubectl auth can-i get nodes --user=amit
+ 1328  kubectl auth can-i get po --user=amit
+ 1329  kubectl auth can-i get deploy --user=amit
+ 1330  kubectl config use-context amit@k8s
+ 1331  kubectl get po
+ 1332  kubectl delete po --all
+ 1333  ls
+ 1334  kubectl get po -n kube-system
+ 1335  kubectl config use-context kind-k8s
+ 1336  ls
+ 1337  kubectl get clusterroles
+ 1338  kubectl describe clusterroles view
+ 1339  ls
+ 1340  kubectl create clusterrolebinding view-binding-amit --clusterrole=view --user=amit --dry-run -o yaml > 03-Cluster-View-Role-Binding.yaml
+ 1341  ls
+ 1342  kubectl apply -f 03-Cluster-View-Role-Binding.yaml
+ 1343  kubectl get clusterrolebindings
+ 1344  kubectl config use-context amit@k8s
+ 1345  kubectl get po
+ 1346  kubectl get po -n kube-systen
+ 1347  kubectl get po -n kube-system
+ 1348  kubectl get deploy
+ 1349  kubectl get deploy -A
+ 1350  kubectl get po -n kube-system
+ 1351  kubectl delete pod --all
+ 1352  ls
+ 1353  kubectl config use-context kind-k8s
+ 1354  kubectl get clusterrole
+ 1355  kubectl delete -f 03-Cluster-View-Role-Binding.yaml
+ 1356  kubectl delete -f 02-Pod-Reader-Role-Binding.yaml
+ 1357  kubectl create clusterrolebinding clusteradmin-binding-amit --clusterrole=cluster-admin --user=amit --dry-run -o yaml > 04-ClusterAdmin-Role-Binding.yaml
+ 1358  ls
+ 1359  cat 04-ClusterAdmin-Role-Binding.yaml
+ 1360  kubectl apply -f 04-ClusterAdmin-Role-Binding.yaml
+ 1361  kubectl get clusterrolebindings
+ 1362  kubectl config use-context amit@k8s
+ 1363  kubectl get all
+ 1364  kubectl get all -A
+ 1365  kubectl get nodes
+ 1366  ls
+ 1367  cd ..
+ 1368  ls
+ 1369  kubectl apply -f 07-Deployment/01-Helloworld.yaml
+ 1370  kubectl get po
+ 1371  kubectl delete po --all
+ 1372  ls
+ 1373  kubectl config get-contexts
+
